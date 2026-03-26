@@ -1,10 +1,14 @@
 // establish global variables
 let bg;
 let stars = [];
+let glows = [];
+let glow1,glow2 = false;
+let constellations = [];
 let textboxes = [];
 let star1,star2 = false;
 let textbox = 'none';
 let col1, col2;
+
 
 function preload(){
   bg = loadImage('/assets/bg.png')
@@ -13,6 +17,10 @@ function preload(){
     // console.log(i)
     stars[i] = loadImage('/assets/star'+str(i)+'.png')
   }
+  constellations[1] = loadImage('/assets/constellation1.png')
+
+  glows[1] = loadImage('/assets/glow1.png')
+  glows[2] = loadImage('/assets/glow2.png')
 }
 
 function setup() {
@@ -22,42 +30,62 @@ function setup() {
   noStroke();
   
   col1 = color(255,236,203);
-  col1.setAlpha(150);
+  col1.setAlpha(170);
 
   col2 = color(255,169,169);
-  col2.setAlpha(150);
+  col2.setAlpha(170);
 
   stars[1].resize(42,46)
-  stars[2].resize(32,34)
+  constellations[1].resize(236,217)
+
 }
 
 function draw() {
   background(bg);
 
   if(!star1&&!star2){
-    stars[1].resize(42,46)
-    //star 1
-    image(stars[1],100,windowHeight-200);
-
-    //constellation 1
-    image(stars[2],windowWidth-420,100);
-    image(stars[2],windowWidth-380,50);
-    image(stars[2],windowWidth-320,70);
-  } else if(star1){
-    stars[1].resize(74,86)
-    image(stars[1],windowWidth/2-37,windowHeight/2-43);
+    if(glow1){
+      tint(255,80);
+      image(glows[1],92,windowHeight-208);
+      tint(255,255);
+    }
+    if(glow2){
+      tint(255,100);
+      image(glows[2],117,68);
+      tint(255,255);
+    }
   }
 
-  
+  image(stars[1],100,windowHeight-200);
+  image(constellations[1],150,100);
 
   textBoxes();
 
   drawingContext.shadowBlur = 20;
   drawingContext.shadowColor = col1;
+
+  // console.log(mouseX,mouseY)
+  hoverGlow();
 }
 
 function windowResized(){
   resizeCanvas(windowWidth,windowHeight)
+}
+
+function hoverGlow(){
+  if(mouseX>=100&&mouseX<=142&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
+    glow1 = true;
+  }
+  else if(mouseX>=150&&mouseX<=386&&mouseY>=100&&mouseY<=238){
+    glow2 = true;
+  }
+  else if(mouseX>=330&&mouseX<=386&&mouseY>=238&&mouseY<=317){
+    glow2 = true;
+  }
+  else{
+    glow1 = false;
+    glow2 = false;
+  }
 }
 
 function mouseClicked(){
@@ -68,13 +96,10 @@ function mouseClicked(){
       if(mouseX>=100&&mouseX<=142&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
         star1 = true;
       }
-      else if(mouseX>=windowWidth-420&&mouseX<=windowWidth-388&&mouseY>=100&&mouseY<=134){
+      else if(mouseX>=150&&mouseX<=386&&mouseY>=100&&mouseY<=238){
         star2 = true;
       }
-      else if(mouseX>=windowWidth-380&&mouseX<=windowWidth-348&&mouseY>=50&&mouseY<=84){
-        star2 = true;
-      }
-      else if(mouseX>=windowWidth-320&&mouseX<=windowWidth-288&&mouseY>=70&&mouseY<=104){
+      else if(mouseX>=330&&mouseX<=386&&mouseY>=238&&mouseY<=317){
         star2 = true;
       }
   }
@@ -83,12 +108,14 @@ function mouseClicked(){
 
 function textBoxes(){
   if(star1){
+    background(0,0,20,80)
     fill(col1);
     rect(windowWidth/2,windowHeight/2,400,250,20);
     fill('white')
     text('seeing the bag charms on different strangers\nswing in sync while walking',windowWidth/2,windowHeight/2+80);
   }
   else if(star2){
+    background(0,0,20,80)
     fill(col2);
     rect(windowWidth/2,windowHeight/2,400,150,20);
     fill('white')
