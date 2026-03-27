@@ -5,12 +5,12 @@ let glows = [];
 let glow1,glow2 = false;
 let constellations = [];
 let textboxes = [];
-let star1,star2 = false;
+let star1,const1 = false;
 let textbox = 'none';
 let col1, col2;
-let const1 = false;
+let const1star1,const1const1 = false;
 
-let const1star1;
+let const1stars = [];
 
 function preload(){
   bg = loadImage('/assets/bg.png')
@@ -24,7 +24,8 @@ function preload(){
   glows[1] = loadImage('/assets/glow1.png')
   glows[2] = loadImage('/assets/glow2.png')
 
-  const1star1 = loadImage('/assets/pokopiacalculator.gif');
+  const1stars[1] = loadImage('/assets/pokopiacalculator.gif');
+  const1stars[2] = loadImage('/assets/charms.gif');
 }
 
 function setup() {
@@ -39,21 +40,23 @@ function setup() {
   col2 = color(255,169,169);
   col2.setAlpha(170);
 
-  stars[1].resize(42,46)
-  stars[2].resize(66,71)
+  stars[1].resize(51,55)
+  stars[2].resize(79,86)
   constellations[1].resize(236,217)
 
-  const1star1.resize(300,300)
-
+  const1stars[1].resize(300,300)
+  const1stars[2].resize(500,300)
 }
 
 function draw() {
   background(bg);
+  // console.log(mouseX,mouseY)
 
-  if(!star1&&!star2){
+  // if nothing is active, glow
+  if(!star1&&!const1){
     if(glow1){
       tint(255,80);
-      image(glows[1],92,windowHeight-208);
+      image(glows[1],windowWidth/2-660,windowHeight-206);
       tint(255,255);
     }
     if(glow2){
@@ -80,7 +83,7 @@ function windowResized(){
 }
 
 function hoverGlow(){
-  if(mouseX>=100&&mouseX<=142&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
+  if(mouseX>=100&&mouseX<=151&&mouseY>=windowHeight-200&&mouseY<=windowHeight-155){
     glow1 = true;
   }
   else if(mouseX>=150&&mouseX<=386&&mouseY>=100&&mouseY<=238){
@@ -96,26 +99,36 @@ function hoverGlow(){
 }
 
 function mouseClicked(){
+  //if star 1 is active
   if(star1){
     star1 = false;
-  }  else if(star2&&!const1){
-    if(mouseX>=80&&mouseX<=146&&mouseY>=180&&mouseY<=251){
-      const1 = true;
-    }else {
-      star2 = false;
+  }  
+  // if constellation 1 is active but const 1 star 1 not active
+  else if(const1&&!const1star1){
+    //if mouse is on const 1 star 1
+    if(mouseX>=windowWidth/2-400&&mouseX<=windowWidth/2-321&&mouseY>=windowHeight/2-100&&mouseY<=windowHeight/2-14){
+      const1star1 = true;
+    } else {
+      const1 = false;
     }
-  } else if(star2&&const1){
-    const1 = false;
+  } else if(const1&&const1star1){
+    const1star1 = false;
+  } else if(const1&&!const1const1){
+    if(mouseX>=240&&mouseX<=306&&mouseY>=60&&mouseY<=131){
+      const1const1 = true;
+    } 
+  } else if(const1&&const1const1){
+    const1const1 = false;
   }
   else {
       if(mouseX>=100&&mouseX<=142&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
         star1 = true;
       }
       else if(mouseX>=150&&mouseX<=386&&mouseY>=100&&mouseY<=238){
-        star2 = true;
+        const1 = true;
       }
       else if(mouseX>=330&&mouseX<=386&&mouseY>=238&&mouseY<=317){
-        star2 = true;
+        const1 = true;
       }
   }
   
@@ -124,32 +137,31 @@ function mouseClicked(){
 function textBoxes(){
   if(star1){
     background(0,0,50,180)
-    fill(col1);
-    rect(windowWidth/2,windowHeight/2,400,250,20);
+    // fill(col1);
+    // rect(windowWidth/2,windowHeight/2,400,250,20);
     fill('white')
-    text('seeing the bag charms on different strangers\nswing in sync while walking',windowWidth/2,windowHeight/2+80);
+    image(const1stars[2],windowWidth/2-250,windowHeight/2-150);
+    text('seeing the bag charms on different strangers\nswing in sync while walking',windowWidth/2,windowHeight/2+180);
   }
-  else if(star2){
+  else if(const1){
     background(0,0,50,180)
     fill(col2);
     rect(windowWidth/2,windowHeight/2,400,150,20);
     fill('white')
     text('people using software to do something it\'s not meant to do',windowWidth/2,windowHeight/2);
 
-    image(stars[2],80,180);
-    image(stars[2],240,60);
-    image(stars[2],460,130);
-    image(stars[2],590,370);
+    image(stars[2],windowWidth/2-400,windowHeight/2-100);
+    image(stars[2],windowWidth/2-220,windowHeight/2-300);
+    image(stars[2],windowWidth-650,windowHeight/2-200);
+    image(stars[2],windowWidth-460,windowHeight-300);
   }
   
-  if(const1){
+  if(const1star1){
       background(0,0,50,180)
-      // fill(col2);
-      // rect(windowWidth/2,windowHeight/2,400,350,20);
       fill('white')
-      image(const1star1,windowWidth/2-150,windowHeight/2-150);
+      image(const1stars[1],windowWidth/2-150,windowHeight/2-150);
       text('making a working calcualtor in Pokemon Pokopia',windowWidth/2,windowHeight/2+170);
-      image(stars[2],80,180);
+      image(stars[2],windowWidth/2-400,windowHeight/2-100);
   } 
 }
 
