@@ -56,7 +56,7 @@ function draw() {
   if(!star1&&!const1){
     if(glow1){
       tint(255,80);
-      image(glows[1],windowWidth/2-660,windowHeight-206);
+      image(glows[1],windowWidth/2-668,windowHeight-211);
       tint(255,255);
     }
     if(glow2){
@@ -83,7 +83,7 @@ function windowResized(){
 }
 
 function hoverGlow(){
-  if(mouseX>=100&&mouseX<=151&&mouseY>=windowHeight-200&&mouseY<=windowHeight-155){
+  if(mouseX>=100&&mouseX<=142&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
     glow1 = true;
   }
   else if(mouseX>=150&&mouseX<=386&&mouseY>=100&&mouseY<=238){
@@ -152,8 +152,8 @@ function textBoxes(){
 
     image(stars[2],windowWidth/2-400,windowHeight/2-100);
     image(stars[2],windowWidth/2-220,windowHeight/2-300);
-    image(stars[2],windowWidth-650,windowHeight/2-200);
-    image(stars[2],windowWidth-460,windowHeight-300);
+    image(stars[2],windowWidth/2+80,windowHeight/2-200);
+    image(stars[2],windowWidth/2+240,windowHeight-300);
   }
   
   if(const1star1){
