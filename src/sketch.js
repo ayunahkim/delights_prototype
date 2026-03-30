@@ -234,12 +234,24 @@ function mouseClicked(){
       if(mouseX>=windowWidth/2-380&&mouseX<=windowWidth/2-301&&mouseY>=windowHeight/2-120&&mouseY<=windowHeight/2-34){
         const2star1 = true;
       }
+      else if(mouseX>=windowWidth/2-220&&mouseX<=windowWidth/2-141&&mouseY>=windowHeight/2+50&&mouseY<=windowHeight/2+136){
+        const2star2 = true;
+      }
+      else if(mouseX>=windowWidth/2+80&&mouseX<=windowWidth/2+159&&mouseY>=windowHeight/2+100&&mouseY<=windowHeight/2+186){
+        const2star3 = true;
+      }
       else {
         const2 = false;
       }
     }
     else if(const2star1){
       const2star1 = false;
+    }
+    else if(const2star2){
+      const2star2 = false;
+    }
+    else if(const2star3){
+      const2star3 = false;
     }
   }
   else if(star4){
@@ -353,9 +365,19 @@ function textBoxes(){
       background(0,0,50,180)
       fill('white')
       // image(const1stars[1],windowWidth/2-150,windowHeight/2-150);
-      text('making custom miis with face paint drawing with only a finger or stylus',windowWidth/2,windowHeight/2+170);
+      text('making custom miis with face paint drawing with only a finger or stylus',windowWidth/2,windowHeight/2);
       image(stars[6],windowWidth/2-380,windowHeight/2-120);
-    } 
+    } else if(const2star2){
+      background(0,0,50,180)
+      fill('white')
+      text('oshikatsu culture and ita bags',windowWidth/2,windowHeight/2);
+      image(stars[6],windowWidth/2-220,windowHeight/2+50);
+    } else if(const2star3){
+      background(0,0,50,180)
+      fill('white')
+      text('custom keyboards that are designed from the case to the switches inside!!',windowWidth/2,windowHeight/2);
+      image(stars[6],windowWidth/2+80,windowHeight/2+100);
+    }
   }
   else if(star4){
     background(0,0,50,180)
