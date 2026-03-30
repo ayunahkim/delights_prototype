@@ -8,17 +8,15 @@ let glows = [];
 let constellations = [];
 let const1stars = [];
 let starImgs = [];
-let textboxes = [];
 
 let star1 = false;
 let star2 = false;
 let star3 = false;
 let star4 = false;
+let star5 = false;
 
 let const1 = false;
 let const2 = false;
-
-let textbox = 'none';
 
 let const1star1 = false;
 let const1star2 = false;
@@ -35,12 +33,12 @@ let glow3 = false;
 let glow4 = false;
 let glow5 = false;
 let glow6 = false;
+let glow7 = false;
 
 function preload(){
   bg = loadImage('/assets/bg.png')
 
-  for(let i=1;i<=6;i++){
-    // console.log(i)
+  for(let i=1;i<=7;i++){
     stars[i] = loadImage('/assets/star'+str(i)+'.png')
   }
   constellations[1] = loadImage('/assets/constellation1.png')
@@ -95,7 +93,7 @@ function draw() {
     }
     else if(glow2){
       tint(255,100);
-      image(glows[2],windowWidth*.077,windowHeight*.117);
+      image(glows[2],windowWidth*.077,windowHeight*.12);
       tint(255,255);
     }
     else if(glow3){
@@ -105,7 +103,7 @@ function draw() {
     }
     else if(glow4){
       tint(255,80);
-      image(glows[4],windowWidth/2-111,windowHeight/2-210);
+      image(glows[4],windowWidth/2-111,windowHeight/2-212);
       tint(255,255);
     }
     else if(glow5){
@@ -115,7 +113,7 @@ function draw() {
     }
     else if(glow6){
       tint(255,80);
-      image(glows[6],windowWidth/2+308,windowHeight/2-110);
+      image(glows[6],windowWidth/2+308,windowHeight/2-112);
       tint(255,255);
     }
   }
@@ -237,13 +235,13 @@ function mouseClicked(){
     star4 = false;
   }
   else {
-      if(mouseX>=100&&mouseX<=142&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
+      if(mouseX>=windowWidth*.006&&mouseX<=windowWidth*.094&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
         star1 = true;
       }
-      else if(mouseX>=150&&mouseX<=386&&mouseY>=100&&mouseY<=238){
+      else if(mouseX>=windowWidth*.099&&mouseX<=windowWidth*.255&&mouseY>=windowHeight*.17&&mouseY<=windowHeight*.409){
         const1 = true;
       }
-      else if(mouseX>=330&&mouseX<=386&&mouseY>=238&&mouseY<=317){
+      else if(mouseX>=windowWidth*.218&&mouseX<=windowWidth*.255&&mouseY>=windowHeight*.409&&mouseY<=windowHeight*.54){
         const1 = true;
       }
       else if(mouseX>=windowWidth/2-260&&mouseX<=windowWidth/2-209&&mouseY>=windowHeight-150&&mouseY<=windowHeight-95){
