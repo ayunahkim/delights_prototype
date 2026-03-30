@@ -1,27 +1,32 @@
 // this code is super messy i'm so sorry whoever sees it
 // not my best code since this was supposed to be a quick prototype
 
-let bg;
+let bg,col1,col2;
+
 let stars = [];
 let glows = [];
-let glow1 = false;
-let glow2 = false;
-let glow3 = false;
 let constellations = [];
+let const1stars = [];
+let starImgs = [];
 let textboxes = [];
+
 let star1 = false;
 let star2 = false;
+let star3 = false;
+
 let const1 = false;
 let textbox = 'none';
-let col1, col2;
 
 let const1star1 = false;
 let const1star2 = false;
 let const1star3 = false;
 let const1star4 = false;
 
-let const1stars = [];
-let star1img;
+let glow1 = false;
+let glow2 = false;
+let glow3 = false;
+let glow4 = false;
+
 
 function preload(){
   bg = loadImage('/assets/bg.png')
@@ -32,12 +37,17 @@ function preload(){
   }
   constellations[1] = loadImage('/assets/constellation1.png')
 
+  // for(let i=1;i<=3;i++){
+  //   glows[i] = loadImage('/assets/glow'+str(i)+'.png')
+  // }
+
   glows[1] = loadImage('/assets/glow1.png')
   glows[2] = loadImage('/assets/glow2.png')
   glows[3] = loadImage('/assets/glow3.png')
+  glows[4] = loadImage('/assets/glow4.png')
 
   const1stars[1] = loadImage('/assets/pokopiacalculator.gif');
-  star1img = loadImage('/assets/charms.gif');
+  starImgs[1] = loadImage('/assets/charms.gif');
 }
 
 function setup() {
@@ -56,10 +66,11 @@ function setup() {
   stars[1].resize(51,55)
   stars[2].resize(79,86)
   stars[3].resize(51,55)
+  stars[4].resize(51,55)
   constellations[1].resize(236,217)
 
   const1stars[1].resize(300,300)
-  star1img.resize(500,300)
+  starImgs[1].resize(500,300)
 }
 
 function draw() {
@@ -67,20 +78,25 @@ function draw() {
   console.log(windowWidth,windowHeight);
 
   // if nothing is active, glow
-  if(!star1&&!const1&&!star2){
+  if(!star1&&!const1&&!star2&&!star3){
     if(glow1){
       tint(255,80);
       image(glows[1],windowWidth/2-668,windowHeight-211);
       tint(255,255);
     }
-    if(glow2){
+    else if(glow2){
       tint(255,100);
       image(glows[2],windowWidth*.077,windowHeight*.117);
       tint(255,255);
     }
-    if(glow3){
+    else if(glow3){
       tint(255,80);
       image(glows[3],windowWidth/2-271,windowHeight-161);
+      tint(255,255);
+    }
+    else if(glow4){
+      tint(255,80);
+      image(glows[4],windowWidth/2-111,windowHeight/2-210);
       tint(255,255);
     }
   }
@@ -88,6 +104,7 @@ function draw() {
   image(stars[1],windowWidth*.066,windowHeight-200);
   image(constellations[1],windowWidth*.099,windowHeight*.17);
   image(stars[3],windowWidth/2-260,windowHeight-150);
+  image(stars[4],windowWidth/2-100,windowHeight/2-200);
 
   textBoxes();
 
@@ -114,10 +131,14 @@ function hoverGlow(){
   else if(mouseX>=windowWidth/2-260&&mouseX<=windowWidth/2-209&&mouseY>=windowHeight-150&&mouseY<=windowHeight-95){
     glow3 = true;
   }
+  else if(mouseX>=windowWidth/2-100&&mouseX<=windowWidth/2-49&&mouseY>=windowHeight/2-200&&mouseY<=windowHeight/2-145){
+    glow4 = true;
+  }
   else{
     glow1 = false;
     glow2 = false;
     glow3 = false;
+    glow4 = false;
   }
 }
 
@@ -168,6 +189,12 @@ function mouseClicked(){
       const1star4 = false;
     }
   } 
+  else if(star2){
+    star2=false;
+  }
+  else if(star3){
+    star3 = false;
+  }
   else {
       if(mouseX>=100&&mouseX<=142&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
         star1 = true;
@@ -177,6 +204,12 @@ function mouseClicked(){
       }
       else if(mouseX>=330&&mouseX<=386&&mouseY>=238&&mouseY<=317){
         const1 = true;
+      }
+      else if(mouseX>=windowWidth/2-260&&mouseX<=windowWidth/2-209&&mouseY>=windowHeight-150&&mouseY<=windowHeight-95){
+        star2 = true;
+      }
+      else if(mouseX>=windowWidth/2-100&&mouseX<=windowWidth/2-49&&mouseY>=windowHeight/2-200&&mouseY<=windowHeight/2-145){
+        star3 = true;
       }
   }
   
@@ -188,7 +221,7 @@ function textBoxes(){
     // fill(col1);
     // rect(windowWidth/2,windowHeight/2,400,250,20);
     fill('white')
-    image(star1img,windowWidth/2-250,windowHeight/2-150);
+    image(starImgs[1],windowWidth/2-250,windowHeight/2-150);
     text('seeing the bag charms on different strangers\nswing in sync while walking',windowWidth/2,windowHeight/2+170);
   }
   else if(const1){
@@ -234,7 +267,16 @@ function textBoxes(){
     text('building 24-bit RAM in an open-world RPG game that solves addition',windowWidth/2,windowHeight/2);
   }
 
-  // if(star2){
-
-  // }
+  if(star2){
+    background(0,0,50,180)
+    fill('white')
+    // image(star1img,windowWidth/2-250,windowHeight/2-150);
+    text('a friend reaching out to say something reminded them of you',windowWidth/2,windowHeight/2+170);
+  }
+  else if(star3){
+    background(0,0,50,180)
+    fill('white')
+    // image(star1img,windowWidth/2-250,windowHeight/2-150);
+    text('receiving my monthly artist\'s snail mail',windowWidth/2,windowHeight/2+170);
+  }
 }
