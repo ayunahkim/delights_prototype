@@ -44,7 +44,7 @@ function preload(){
   constellations[1] = loadImage('/assets/constellation1.png')
   constellations[2] = loadImage('/assets/constellation2.png')
 
-  for(let i=1;i<=6;i++){
+  for(let i=1;i<=7;i++){
     glows[i] = loadImage('/assets/glow'+str(i)+'.png')
   }
 
@@ -72,6 +72,7 @@ function setup() {
   stars[4].resize(51,55)
   stars[5].resize(51,55)
   stars[6].resize(79,86)
+  stars[7].resize(51,55)
   constellations[1].resize(236,217)
 
   const1stars[1].resize(300,300)
@@ -85,7 +86,7 @@ function draw() {
   // console.log(mouseX,mouseY);
 
   // if nothing is active, glow
-  if(!star1&&!const1&&!star2&&!star3&&!const2&&!star4){
+  if(!star1&&!const1&&!star2&&!star3&&!const2&&!star4&&!star5){
     if(glow1){
       tint(255,80);
       image(glows[1],windowWidth/2-668,windowHeight-211);
@@ -116,6 +117,11 @@ function draw() {
       image(glows[6],windowWidth/2+308,windowHeight/2-112);
       tint(255,255);
     }
+    else if(glow7){
+      tint(255,80);
+      image(glows[7],windowWidth-191,windowHeight-142);
+      tint(255,255);
+    }
   }
 
   image(stars[1],windowWidth*.066,windowHeight-200);
@@ -124,6 +130,7 @@ function draw() {
   image(stars[4],windowWidth/2-100,windowHeight/2-200);
   image(constellations[2],windowWidth/2,windowHeight/2);
   image(stars[5],windowWidth/2+320,windowHeight/2-100);
+  image(stars[7],windowWidth-180,windowHeight-130);
 
   textBoxes();
 
@@ -159,6 +166,9 @@ function hoverGlow(){
   else if(mouseX>=windowWidth/2+320&&mouseX<=windowWidth/2+371&&mouseY>=windowHeight/2-100&&mouseY<=windowHeight/2-45){
     glow6 = true;
   }
+  else if(mouseX>=windowWidth-180&&mouseX<=windowWidth-129&&mouseY>=windowHeight-130&&mouseY<=windowHeight-75){
+    glow7 = true;
+  }
   else{
     glow1 = false;
     glow2 = false;
@@ -166,6 +176,7 @@ function hoverGlow(){
     glow4 = false;
     glow5 = false;
     glow6 = false;
+    glow7 = false;
   }
 }
 
@@ -234,6 +245,9 @@ function mouseClicked(){
   else if(star4){
     star4 = false;
   }
+  else if(star5){
+    star5 = false;
+  }
   else {
       if(mouseX>=windowWidth*.006&&mouseX<=windowWidth*.094&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
         star1 = true;
@@ -255,6 +269,9 @@ function mouseClicked(){
       }
       else if(mouseX>=windowWidth/2+320&&mouseX<=windowWidth/2+371&&mouseY>=windowHeight/2-100&&mouseY<=windowHeight/2-45){
         star4 = true;
+      }
+      else if(mouseX>=windowWidth-180&&mouseX<=windowWidth-129&&mouseY>=windowHeight-130&&mouseY<=windowHeight-75){
+        star5 = true;
       }
   }
   
@@ -345,5 +362,11 @@ function textBoxes(){
     fill('white')
     image(starImgs[4],windowWidth/2-216,windowHeight/2-162);
     text('this one crunchy low quality silly gif i love',windowWidth/2,windowHeight/2+200);
+  }
+  else if(star5){
+    background(0,0,50,180)
+    fill('white')
+    // image(starImgs[4],windowWidth/2-216,windowHeight/2-162);
+    text('seeing typos or spelling mistakes on signs while walking around\n(i love collecting photos of these)',windowWidth/2,windowHeight/2+170);
   }
 }
