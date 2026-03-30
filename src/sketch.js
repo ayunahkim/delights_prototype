@@ -1,4 +1,6 @@
-// establish global variables
+// this code is super messy i'm so sorry whoever sees it
+// not my best code since this was supposed to be a quick prototype
+
 let bg;
 let stars = [];
 let glows = [];
