@@ -4,10 +4,13 @@
 let bg;
 let stars = [];
 let glows = [];
-let glow1,glow2 = false;
+let glow1 = false;
+let glow2 = false;
+let glow3 = false;
 let constellations = [];
 let textboxes = [];
 let star1 = false;
+let star2 = false;
 let const1 = false;
 let textbox = 'none';
 let col1, col2;
@@ -31,6 +34,7 @@ function preload(){
 
   glows[1] = loadImage('/assets/glow1.png')
   glows[2] = loadImage('/assets/glow2.png')
+  glows[3] = loadImage('/assets/glow3.png')
 
   const1stars[1] = loadImage('/assets/pokopiacalculator.gif');
   star1img = loadImage('/assets/charms.gif');
@@ -63,7 +67,7 @@ function draw() {
   console.log(windowWidth,windowHeight);
 
   // if nothing is active, glow
-  if(!star1&&!const1){
+  if(!star1&&!const1&&!star2){
     if(glow1){
       tint(255,80);
       image(glows[1],windowWidth/2-668,windowHeight-211);
@@ -71,7 +75,12 @@ function draw() {
     }
     if(glow2){
       tint(255,100);
-      image(glows[2],117,68);
+      image(glows[2],windowWidth*.077,windowHeight*.117);
+      tint(255,255);
+    }
+    if(glow3){
+      tint(255,80);
+      image(glows[3],windowWidth/2-271,windowHeight-161);
       tint(255,255);
     }
   }
@@ -85,7 +94,6 @@ function draw() {
   drawingContext.shadowBlur = 20;
   drawingContext.shadowColor = col1;
 
-  // console.log(mouseX,mouseY)
   hoverGlow();
 }
 
@@ -103,9 +111,13 @@ function hoverGlow(){
   else if(mouseX>=windowWidth*.218&&mouseX<=windowWidth*.255&&mouseY>=windowHeight*.409&&mouseY<=windowHeight*.54){
     glow2 = true;
   }
+  else if(mouseX>=windowWidth/2-260&&mouseX<=windowWidth/2-209&&mouseY>=windowHeight-150&&mouseY<=windowHeight-95){
+    glow3 = true;
+  }
   else{
     glow1 = false;
     glow2 = false;
+    glow3 = false;
   }
 }
 
