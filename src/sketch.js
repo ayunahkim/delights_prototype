@@ -8,7 +8,8 @@ let textboxes = [];
 let star1,const1 = false;
 let textbox = 'none';
 let col1, col2;
-let const1star1,const1const1 = false;
+let const1star1 = false;
+let const1star2 = false;
 
 let const1stars = [];
 
@@ -99,27 +100,38 @@ function hoverGlow(){
 }
 
 function mouseClicked(){
+  console.log("const1: "+const1);
+  console.log("const1star1: "+const1star1);
+  console.log("const1star2: "+const1star2);
   //if star 1 is active
   if(star1){
     star1 = false;
   }  
-  // if constellation 1 is active but const 1 star 1 not active
-  else if(const1&&!const1star1){
-    //if mouse is on const 1 star 1
-    if(mouseX>=windowWidth/2-400&&mouseX<=windowWidth/2-321&&mouseY>=windowHeight/2-100&&mouseY<=windowHeight/2-14){
-      const1star1 = true;
-    } else {
-      const1 = false;
+  // if constellation 1 is active
+  else if(const1){
+    //if a star in constellation is not active
+    if(!const1star1&&!const1star2){
+      //if mouse is on const 1 star 1
+      if(mouseX>=windowWidth/2-400&&mouseX<=windowWidth/2-321&&mouseY>=windowHeight/2-100&&mouseY<=windowHeight/2-14){
+        const1star1 = true;
+      }
+      //if mouse is on const 1 star 2
+      else if(mouseX>=windowWidth/2-220&&mouseX<=windowWidth/2-141&&mouseY>=windowHeight/2-300&&mouseY<=windowHeight/2-214){
+        console.log("trueeee")
+        const1star2 = true;
+      }
+      // else, close out of constellation 1
+      else {
+        const1 = false;
+      }
     }
-  } else if(const1&&const1star1){
-    const1star1 = false;
-  } else if(const1&&!const1const1){
-    if(mouseX>=240&&mouseX<=306&&mouseY>=60&&mouseY<=131){
-      const1const1 = true;
-    } 
-  } else if(const1&&const1const1){
-    const1const1 = false;
-  }
+    else if(const1star1){
+      const1star1 = false;
+    }
+    else if(const1star2){
+      const1star2 = false;
+    }
+  } 
   else {
       if(mouseX>=100&&mouseX<=142&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
         star1 = true;
@@ -148,7 +160,8 @@ function textBoxes(){
     fill(col2);
     rect(windowWidth/2,windowHeight/2,400,150,20);
     fill('white')
-    text('people using software to do something it\'s not meant to do',windowWidth/2,windowHeight/2);
+    text('people using a thing to do something else it\'s not meant to do',windowWidth/2,windowHeight/2-10);
+    text('a.k.a stretching the limits of what something can do',windowWidth/2,windowHeight/2+10);
 
     image(stars[2],windowWidth/2-400,windowHeight/2-100);
     image(stars[2],windowWidth/2-220,windowHeight/2-300);
@@ -160,8 +173,16 @@ function textBoxes(){
       background(0,0,50,180)
       fill('white')
       image(const1stars[1],windowWidth/2-150,windowHeight/2-150);
-      text('making a working calcualtor in Pokemon Pokopia',windowWidth/2,windowHeight/2+170);
+      text('making a working calculator in Pokemon Pokopia',windowWidth/2,windowHeight/2+170);
       image(stars[2],windowWidth/2-400,windowHeight/2-100);
   } 
+
+  if(const1star2){
+    background(0,0,50,180)
+    fill('white')
+    image(const1stars[1],windowWidth/2-150,windowHeight/2-150);
+    text('making a working calculator in Pokemon Pokopia',windowWidth/2,windowHeight/2+170);
+    image(stars[2],windowWidth/2-220,windowHeight/2-300);
+  }
 }
 
