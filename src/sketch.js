@@ -8,8 +8,10 @@ let textboxes = [];
 let star1,const1 = false;
 let textbox = 'none';
 let col1, col2;
+
 let const1star1 = false;
 let const1star2 = false;
+let const1star3 = false;
 
 let const1stars = [];
 
@@ -26,7 +28,7 @@ function preload(){
   glows[2] = loadImage('/assets/glow2.png')
 
   const1stars[1] = loadImage('/assets/pokopiacalculator.gif');
-  const1stars[2] = loadImage('/assets/charms.gif');
+  // const1stars[2] = loadImage('/assets/charms.gif');
 }
 
 function setup() {
@@ -46,7 +48,7 @@ function setup() {
   constellations[1].resize(236,217)
 
   const1stars[1].resize(300,300)
-  const1stars[2].resize(500,300)
+  // const1stars[2].resize(500,300)
 }
 
 function draw() {
@@ -103,6 +105,7 @@ function mouseClicked(){
   console.log("const1: "+const1);
   console.log("const1star1: "+const1star1);
   console.log("const1star2: "+const1star2);
+  console.log("const1star3: "+const1star3);
   //if star 1 is active
   if(star1){
     star1 = false;
@@ -110,7 +113,7 @@ function mouseClicked(){
   // if constellation 1 is active
   else if(const1){
     //if a star in constellation is not active
-    if(!const1star1&&!const1star2){
+    if(!const1star1&&!const1star2&&!const1star3){
       //if mouse is on const 1 star 1
       if(mouseX>=windowWidth/2-400&&mouseX<=windowWidth/2-321&&mouseY>=windowHeight/2-100&&mouseY<=windowHeight/2-14){
         const1star1 = true;
@@ -119,6 +122,10 @@ function mouseClicked(){
       else if(mouseX>=windowWidth/2-220&&mouseX<=windowWidth/2-141&&mouseY>=windowHeight/2-300&&mouseY<=windowHeight/2-214){
         console.log("trueeee")
         const1star2 = true;
+      }
+      //if mouse is on const 1 star 3
+      else if(mouseX>=windowWidth/2+80&&mouseX<=windowWidth/2+159&&mouseY>=windowHeight/2-200&&mouseY<=windowHeight/2-114){
+        const1star3 = true;
       }
       // else, close out of constellation 1
       else {
@@ -130,6 +137,9 @@ function mouseClicked(){
     }
     else if(const1star2){
       const1star2 = false;
+    }
+    else if(const1star3){
+      const1star3 = false;
     }
   } 
   else {
@@ -173,16 +183,25 @@ function textBoxes(){
       background(0,0,50,180)
       fill('white')
       image(const1stars[1],windowWidth/2-150,windowHeight/2-150);
-      text('making a working calculator in Pokemon Pokopia',windowWidth/2,windowHeight/2+170);
+      text('making a working calculator in a cutesy Pokemon sandbox game',windowWidth/2,windowHeight/2+170);
       image(stars[2],windowWidth/2-400,windowHeight/2-100);
   } 
 
-  if(const1star2){
+  else if(const1star2){
     background(0,0,50,180)
     fill('white')
     image(const1stars[1],windowWidth/2-150,windowHeight/2-150);
-    text('making a working calculator in Pokemon Pokopia',windowWidth/2,windowHeight/2+170);
+    text('building 24-bit RAM in an open-world RPG factory game that solves math problems',windowWidth/2,windowHeight/2+170);
     image(stars[2],windowWidth/2-220,windowHeight/2-300);
   }
+
+  else if(const1star3){
+    background(0,0,50,180)
+    fill('white')
+     image(stars[2],windowWidth/2+80,windowHeight/2-200);
+    text('building 24-bit RAM in an open-world RPG factory game that solves math problems',windowWidth/2,windowHeight/2+170);
+    image(stars[2],windowWidth/2-220,windowHeight/2-300);
+  }
+
 }
 
