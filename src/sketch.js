@@ -45,12 +45,12 @@ function preload(){
   constellations[2] = loadImage('./assets/constellation2.png')
 
   for(let i=1;i<=7;i++){
-    glows[i] = loadImage('/assets/glow'+str(i)+'.png')
+    glows[i] = loadImage('./assets/glow'+str(i)+'.png')
   }
 
-  const1stars[1] = loadImage('/assets/pokopiacalculator.gif');
-  starImgs[1] = loadImage('/assets/charms.gif');
-  starImgs[4] = loadImage('/assets/alien.gif')
+  const1stars[1] = loadImage('./assets/pokopiacalculator.gif');
+  starImgs[1] = loadImage('./assets/charms.gif');
+  starImgs[4] = loadImage('./assets/alien.gif')
 }
 
 function setup() {
