@@ -36,13 +36,13 @@ let glow6 = false;
 let glow7 = false;
 
 function preload(){
-  bg = loadImage('/assets/bg.png')
+  bg = loadImage('./assets/bg.png')
 
   for(let i=1;i<=7;i++){
-    stars[i] = loadImage('/assets/star'+str(i)+'.png')
+    stars[i] = loadImage('./assets/star'+str(i)+'.png')
   }
-  constellations[1] = loadImage('/assets/constellation1.png')
-  constellations[2] = loadImage('/assets/constellation2.png')
+  constellations[1] = loadImage('./assets/constellation1.png')
+  constellations[2] = loadImage('./assets/constellation2.png')
 
   for(let i=1;i<=7;i++){
     glows[i] = loadImage('/assets/glow'+str(i)+'.png')
