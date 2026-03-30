@@ -38,15 +38,30 @@ let glow7 = false;
 function preload(){
   bg = loadImage('./assets/bg.png')
 
-  for(let i=1;i<=7;i++){
-    stars[i] = loadImage('./assets/star'+str(i)+'.png')
-  }
+  // for(let i=1;i<=7;i++){
+  //   stars[i] = loadImage('./assets/star'+str(i)+'.png')
+  // }
+  stars[1] = loadImage('./assets/star1.png')
+  stars[2] = loadImage('./assets/star2.png')
+  stars[3] = loadImage('./assets/star3.png')
+  stars[4] = loadImage('./assets/star4.png')
+  stars[5] = loadImage('./assets/star5.png')
+  stars[6] = loadImage('./assets/star6.png')
+  stars[7] = loadImage('./assets/star7.png')
+
   constellations[1] = loadImage('./assets/constellation1.png')
   constellations[2] = loadImage('./assets/constellation2.png')
 
-  for(let i=1;i<=7;i++){
-    glows[i] = loadImage('./assets/glow'+str(i)+'.png')
-  }
+  // for(let i=1;i<=7;i++){
+  //   glows[i] = loadImage('./assets/glow'+str(i)+'.png')
+  // }
+  glows[1] = loadImage('./assets/glow1.png')
+  glows[2] = loadImage('./assets/glow2.png')
+  glows[3] = loadImage('./assets/glow3.png')
+  glows[4] = loadImage('./assets/glow4.png')
+  glows[5] = loadImage('./assets/glow5.png')
+  glows[6] = loadImage('./assets/glow6.png')
+  glows[7] = loadImage('./assets/glow7.png')
 
   const1stars[1] = loadImage('./assets/pokopiacalculator.gif');
   starImgs[1] = loadImage('./assets/charms.gif');
