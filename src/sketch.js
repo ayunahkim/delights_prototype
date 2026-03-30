@@ -39,6 +39,7 @@ function setup() {
   rectMode(CENTER);
   textAlign(CENTER,CENTER);
   noStroke();
+  textSize(14)
   
   col1 = color(255,236,203);
   col1.setAlpha(170);
@@ -57,7 +58,7 @@ function setup() {
 
 function draw() {
   background(bg);
-  console.log(star1,const1);
+  console.log(windowWidth,windowHeight);
 
   // if nothing is active, glow
   if(!star1&&!const1){
@@ -73,8 +74,8 @@ function draw() {
     }
   }
 
-  image(stars[1],100,windowHeight-200);
-  image(constellations[1],150,100);
+  image(stars[1],windowWidth*.066,windowHeight-200);
+  image(constellations[1],windowWidth*.099,windowHeight*.17);
   image(stars[3],windowWidth/2-260,windowHeight-150);
 
   textBoxes();
@@ -91,13 +92,13 @@ function windowResized(){
 }
 
 function hoverGlow(){
-  if(mouseX>=100&&mouseX<=142&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
+  if(mouseX>=windowWidth*.006&&mouseX<=windowWidth*.094&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
     glow1 = true;
   }
-  else if(mouseX>=150&&mouseX<=386&&mouseY>=100&&mouseY<=238){
+  else if(mouseX>=windowWidth*.099&&mouseX<=windowWidth*.255&&mouseY>=windowHeight*.17&&mouseY<=windowHeight*.409){
     glow2 = true;
   }
-  else if(mouseX>=330&&mouseX<=386&&mouseY>=238&&mouseY<=317){
+  else if(mouseX>=windowWidth*.218&&mouseX<=windowWidth*.255&&mouseY>=windowHeight*.409&&mouseY<=windowHeight*.54){
     glow2 = true;
   }
   else{
@@ -132,7 +133,7 @@ function mouseClicked(){
         const1star3 = true;
       }
       //if mouse is on const 1 star 4
-      else if(mouseX>=windowWidth/2+240&&mouseX<=windowWidth/2+319&&mouseY>=windowHeight-300&&mouseY<=windowHeight-211){
+      else if(mouseX>=windowWidth/2+280&&mouseX<=windowWidth/2+359&&mouseY>=windowHeight-300&&mouseY<=windowHeight-211){
         const1star4 = true;
       }
       // else, close out of constellation 1
@@ -179,7 +180,7 @@ function textBoxes(){
   else if(const1){
     background(0,0,50,180)
     fill(col2);
-    rect(windowWidth/2,windowHeight/2,400,150,20);
+    rect(windowWidth/2,windowHeight/2,480,150,20);
     fill('white')
     text('people using a thing to do something else it\'s not originally meant to do',windowWidth/2,windowHeight/2-10);
     text('a.k.a stretching the limits of what something can do',windowWidth/2,windowHeight/2+10);
@@ -187,7 +188,7 @@ function textBoxes(){
     image(stars[2],windowWidth/2-400,windowHeight/2-100);
     image(stars[2],windowWidth/2-220,windowHeight/2-300);
     image(stars[2],windowWidth/2+80,windowHeight/2-200);
-    image(stars[2],windowWidth/2+240,windowHeight-300);
+    image(stars[2],windowWidth/2+280,windowHeight-300);
   }
   
   if(const1star1){
@@ -215,7 +216,7 @@ function textBoxes(){
   else if(const1star4){
     background(0,0,50,180)
     fill('white')
-    image(stars[2],windowWidth/2+240,windowHeight-300);
+    image(stars[2],windowWidth/2+280,windowHeight-300);
     text('building 24-bit RAM in an open-world RPG game that solves addition',windowWidth/2,windowHeight/2);
   }
 
