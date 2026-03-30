@@ -15,6 +15,8 @@ let star2 = false;
 let star3 = false;
 
 let const1 = false;
+let const2 = false;
+
 let textbox = 'none';
 
 let const1star1 = false;
@@ -22,11 +24,15 @@ let const1star2 = false;
 let const1star3 = false;
 let const1star4 = false;
 
+let const2star1 = false;
+let const2star2 = false;
+let const2star3 = false;
+
 let glow1 = false;
 let glow2 = false;
 let glow3 = false;
 let glow4 = false;
-
+let glow5 = false;
 
 function preload(){
   bg = loadImage('/assets/bg.png')
@@ -36,6 +42,7 @@ function preload(){
     stars[i] = loadImage('/assets/star'+str(i)+'.png')
   }
   constellations[1] = loadImage('/assets/constellation1.png')
+  constellations[2] = loadImage('/assets/constellation2.png')
 
   // for(let i=1;i<=3;i++){
   //   glows[i] = loadImage('/assets/glow'+str(i)+'.png')
@@ -45,6 +52,7 @@ function preload(){
   glows[2] = loadImage('/assets/glow2.png')
   glows[3] = loadImage('/assets/glow3.png')
   glows[4] = loadImage('/assets/glow4.png')
+  glows[5] = loadImage('/assets/glow5.png')
 
   const1stars[1] = loadImage('/assets/pokopiacalculator.gif');
   starImgs[1] = loadImage('/assets/charms.gif');
@@ -67,6 +75,7 @@ function setup() {
   stars[2].resize(79,86)
   stars[3].resize(51,55)
   stars[4].resize(51,55)
+  stars[6].resize(79,86)
   constellations[1].resize(236,217)
 
   const1stars[1].resize(300,300)
@@ -76,9 +85,10 @@ function setup() {
 function draw() {
   background(bg);
   console.log(windowWidth,windowHeight);
+  // console.log(mouseX,mouseY);
 
   // if nothing is active, glow
-  if(!star1&&!const1&&!star2&&!star3){
+  if(!star1&&!const1&&!star2&&!star3&&!const2){
     if(glow1){
       tint(255,80);
       image(glows[1],windowWidth/2-668,windowHeight-211);
@@ -99,12 +109,18 @@ function draw() {
       image(glows[4],windowWidth/2-111,windowHeight/2-210);
       tint(255,255);
     }
+    else if(glow5){
+      tint(255,80);
+      image(glows[5],windowWidth/2-14,windowHeight/2-14);
+      tint(255,255);
+    }
   }
 
   image(stars[1],windowWidth*.066,windowHeight-200);
   image(constellations[1],windowWidth*.099,windowHeight*.17);
   image(stars[3],windowWidth/2-260,windowHeight-150);
   image(stars[4],windowWidth/2-100,windowHeight/2-200);
+  image(constellations[2],windowWidth/2,windowHeight/2);
 
   textBoxes();
 
@@ -134,19 +150,19 @@ function hoverGlow(){
   else if(mouseX>=windowWidth/2-100&&mouseX<=windowWidth/2-49&&mouseY>=windowHeight/2-200&&mouseY<=windowHeight/2-145){
     glow4 = true;
   }
+  else if(mouseX>=windowWidth/2&&mouseX<=windowWidth/2+232&&mouseY>=windowHeight/2&&mouseY<=windowHeight/2+152){
+    glow5 = true;
+  }
   else{
     glow1 = false;
     glow2 = false;
     glow3 = false;
     glow4 = false;
+    glow5 = false;
   }
 }
 
 function mouseClicked(){
-  // console.log("const1: "+const1);
-  // console.log("const1star1: "+const1star1);
-  // console.log("const1star2: "+const1star2);
-  // console.log("const1star3: "+const1star3);
   //if star 1 is active
   if(star1){
     star1 = false;
@@ -195,6 +211,19 @@ function mouseClicked(){
   else if(star3){
     star3 = false;
   }
+  else if(const2){
+    if(!const2star1&&!const2star2&&!const2star3){
+      if(mouseX>=windowWidth/2-380&&mouseX<=windowWidth/2-301&&mouseY>=windowHeight/2-120&&mouseY<=windowHeight/2-34){
+        const2star1 = true;
+      }
+      else {
+        const2 = false;
+      }
+    }
+    else if(const2star1){
+      const2star1 = false;
+    }
+  }
   else {
       if(mouseX>=100&&mouseX<=142&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
         star1 = true;
@@ -211,6 +240,9 @@ function mouseClicked(){
       else if(mouseX>=windowWidth/2-100&&mouseX<=windowWidth/2-49&&mouseY>=windowHeight/2-200&&mouseY<=windowHeight/2-145){
         star3 = true;
       }
+      else if(mouseX>=windowWidth/2&&mouseX<=windowWidth/2+232&&mouseY>=windowHeight/2&&mouseY<=windowHeight/2+152){
+        const2 = true;
+      }
   }
   
 }
@@ -218,8 +250,6 @@ function mouseClicked(){
 function textBoxes(){
   if(star1){
     background(0,0,50,180)
-    // fill(col1);
-    // rect(windowWidth/2,windowHeight/2,400,250,20);
     fill('white')
     image(starImgs[1],windowWidth/2-250,windowHeight/2-150);
     text('seeing the bag charms on different strangers\nswing in sync while walking',windowWidth/2,windowHeight/2+170);
@@ -236,47 +266,65 @@ function textBoxes(){
     image(stars[2],windowWidth/2-220,windowHeight/2-300);
     image(stars[2],windowWidth/2+80,windowHeight/2-200);
     image(stars[2],windowWidth/2+280,windowHeight-300);
-  }
-  
-  if(const1star1){
+
+    if(const1star1){
       background(0,0,50,180)
       fill('white')
       image(const1stars[1],windowWidth/2-150,windowHeight/2-150);
       text('making a working calculator in a cutesy Pokemon game',windowWidth/2,windowHeight/2+170);
       image(stars[2],windowWidth/2-400,windowHeight/2-100);
-  } 
+    } 
 
-  else if(const1star2){
-    background(0,0,50,180)
-    fill('white')
-    text('drawing visual art in a MIDI program using notes',windowWidth/2,windowHeight/2);
-    image(stars[2],windowWidth/2-220,windowHeight/2-300);
+    else if(const1star2){
+      background(0,0,50,180)
+      fill('white')
+      text('drawing visual art in a MIDI program using notes',windowWidth/2,windowHeight/2);
+      image(stars[2],windowWidth/2-220,windowHeight/2-300);
+    }
+
+    else if(const1star3){
+      background(0,0,50,180)
+      fill('white')
+      image(stars[2],windowWidth/2+80,windowHeight/2-200);
+      text('making a giant keyboard in Minecraft using sheep and mine carts',windowWidth/2,windowHeight/2);
+    }
+
+    else if(const1star4){
+      background(0,0,50,180)
+      fill('white')
+      image(stars[2],windowWidth/2+280,windowHeight-300);
+      text('building 24-bit RAM in an open-world RPG game that solves addition',windowWidth/2,windowHeight/2);
+    }
   }
-
-  else if(const1star3){
-    background(0,0,50,180)
-    fill('white')
-    image(stars[2],windowWidth/2+80,windowHeight/2-200);
-    text('making a giant keyboard in Minecraft using sheep and mine carts',windowWidth/2,windowHeight/2);
-  }
-
-  else if(const1star4){
-    background(0,0,50,180)
-    fill('white')
-    image(stars[2],windowWidth/2+280,windowHeight-300);
-    text('building 24-bit RAM in an open-world RPG game that solves addition',windowWidth/2,windowHeight/2);
-  }
-
-  if(star2){
+  else if(star2){
     background(0,0,50,180)
     fill('white')
     // image(star1img,windowWidth/2-250,windowHeight/2-150);
-    text('a friend reaching out to say something reminded them of you',windowWidth/2,windowHeight/2+170);
+    text('a friend reaching out to say something reminded them of me',windowWidth/2,windowHeight/2+170);
   }
   else if(star3){
     background(0,0,50,180)
     fill('white')
     // image(star1img,windowWidth/2-250,windowHeight/2-150);
     text('receiving my monthly artist\'s snail mail',windowWidth/2,windowHeight/2+170);
+  }
+  else if(const2){
+    background(0,0,50,180)
+    fill('#D5E9F1');
+    rect(windowWidth/2,windowHeight/2,400,120,20);
+    fill('#635852')
+    text('admiring the variety and artistic spirit of customization',windowWidth/2,windowHeight/2);
+
+    image(stars[6],windowWidth/2-380,windowHeight/2-120);
+    image(stars[6],windowWidth/2-220,windowHeight/2+50);
+    image(stars[6],windowWidth/2+80,windowHeight/2+100);
+
+    if(const2star1){
+      background(0,0,50,180)
+      fill('white')
+      // image(const1stars[1],windowWidth/2-150,windowHeight/2-150);
+      text('making custom miis with face paint drawing with only a finger or stylus',windowWidth/2,windowHeight/2+170);
+      image(stars[6],windowWidth/2-380,windowHeight/2-120);
+    } 
   }
 }
