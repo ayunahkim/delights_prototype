@@ -13,6 +13,7 @@ let textboxes = [];
 let star1 = false;
 let star2 = false;
 let star3 = false;
+let star4 = false;
 
 let const1 = false;
 let const2 = false;
@@ -33,6 +34,7 @@ let glow2 = false;
 let glow3 = false;
 let glow4 = false;
 let glow5 = false;
+let glow6 = false;
 
 function preload(){
   bg = loadImage('/assets/bg.png')
@@ -44,18 +46,13 @@ function preload(){
   constellations[1] = loadImage('/assets/constellation1.png')
   constellations[2] = loadImage('/assets/constellation2.png')
 
-  // for(let i=1;i<=3;i++){
-  //   glows[i] = loadImage('/assets/glow'+str(i)+'.png')
-  // }
-
-  glows[1] = loadImage('/assets/glow1.png')
-  glows[2] = loadImage('/assets/glow2.png')
-  glows[3] = loadImage('/assets/glow3.png')
-  glows[4] = loadImage('/assets/glow4.png')
-  glows[5] = loadImage('/assets/glow5.png')
+  for(let i=1;i<=6;i++){
+    glows[i] = loadImage('/assets/glow'+str(i)+'.png')
+  }
 
   const1stars[1] = loadImage('/assets/pokopiacalculator.gif');
   starImgs[1] = loadImage('/assets/charms.gif');
+  starImgs[4] = loadImage('/assets/alien.gif')
 }
 
 function setup() {
@@ -75,11 +72,13 @@ function setup() {
   stars[2].resize(79,86)
   stars[3].resize(51,55)
   stars[4].resize(51,55)
+  stars[5].resize(51,55)
   stars[6].resize(79,86)
   constellations[1].resize(236,217)
 
   const1stars[1].resize(300,300)
   starImgs[1].resize(500,300)
+  starImgs[4].resize(432,324)
 }
 
 function draw() {
@@ -88,7 +87,7 @@ function draw() {
   // console.log(mouseX,mouseY);
 
   // if nothing is active, glow
-  if(!star1&&!const1&&!star2&&!star3&&!const2){
+  if(!star1&&!const1&&!star2&&!star3&&!const2&&!star4){
     if(glow1){
       tint(255,80);
       image(glows[1],windowWidth/2-668,windowHeight-211);
@@ -114,6 +113,11 @@ function draw() {
       image(glows[5],windowWidth/2-14,windowHeight/2-14);
       tint(255,255);
     }
+    else if(glow6){
+      tint(255,80);
+      image(glows[6],windowWidth/2+308,windowHeight/2-110);
+      tint(255,255);
+    }
   }
 
   image(stars[1],windowWidth*.066,windowHeight-200);
@@ -121,6 +125,7 @@ function draw() {
   image(stars[3],windowWidth/2-260,windowHeight-150);
   image(stars[4],windowWidth/2-100,windowHeight/2-200);
   image(constellations[2],windowWidth/2,windowHeight/2);
+  image(stars[5],windowWidth/2+320,windowHeight/2-100);
 
   textBoxes();
 
@@ -153,12 +158,16 @@ function hoverGlow(){
   else if(mouseX>=windowWidth/2&&mouseX<=windowWidth/2+232&&mouseY>=windowHeight/2&&mouseY<=windowHeight/2+152){
     glow5 = true;
   }
+  else if(mouseX>=windowWidth/2+320&&mouseX<=windowWidth/2+371&&mouseY>=windowHeight/2-100&&mouseY<=windowHeight/2-45){
+    glow6 = true;
+  }
   else{
     glow1 = false;
     glow2 = false;
     glow3 = false;
     glow4 = false;
     glow5 = false;
+    glow6 = false;
   }
 }
 
@@ -224,6 +233,9 @@ function mouseClicked(){
       const2star1 = false;
     }
   }
+  else if(star4){
+    star4 = false;
+  }
   else {
       if(mouseX>=100&&mouseX<=142&&mouseY>=windowHeight-200&&mouseY<=windowHeight-154){
         star1 = true;
@@ -242,6 +254,9 @@ function mouseClicked(){
       }
       else if(mouseX>=windowWidth/2&&mouseX<=windowWidth/2+232&&mouseY>=windowHeight/2&&mouseY<=windowHeight/2+152){
         const2 = true;
+      }
+      else if(mouseX>=windowWidth/2+320&&mouseX<=windowWidth/2+371&&mouseY>=windowHeight/2-100&&mouseY<=windowHeight/2-45){
+        star4 = true;
       }
   }
   
@@ -326,5 +341,11 @@ function textBoxes(){
       text('making custom miis with face paint drawing with only a finger or stylus',windowWidth/2,windowHeight/2+170);
       image(stars[6],windowWidth/2-380,windowHeight/2-120);
     } 
+  }
+  else if(star4){
+    background(0,0,50,180)
+    fill('white')
+    image(starImgs[4],windowWidth/2-216,windowHeight/2-162);
+    text('this one crunchy low quality silly gif i love',windowWidth/2,windowHeight/2+200);
   }
 }
