@@ -5,15 +5,18 @@ let glows = [];
 let glow1,glow2 = false;
 let constellations = [];
 let textboxes = [];
-let star1,const1 = false;
+let star1 = false;
+let const1 = false;
 let textbox = 'none';
 let col1, col2;
 
 let const1star1 = false;
 let const1star2 = false;
 let const1star3 = false;
+let const1star4 = false;
 
 let const1stars = [];
+let star1img;
 
 function preload(){
   bg = loadImage('/assets/bg.png')
@@ -28,7 +31,7 @@ function preload(){
   glows[2] = loadImage('/assets/glow2.png')
 
   const1stars[1] = loadImage('/assets/pokopiacalculator.gif');
-  // const1stars[2] = loadImage('/assets/charms.gif');
+  star1img = loadImage('/assets/charms.gif');
 }
 
 function setup() {
@@ -45,15 +48,16 @@ function setup() {
 
   stars[1].resize(51,55)
   stars[2].resize(79,86)
+  stars[3].resize(51,55)
   constellations[1].resize(236,217)
 
   const1stars[1].resize(300,300)
-  // const1stars[2].resize(500,300)
+  star1img.resize(500,300)
 }
 
 function draw() {
   background(bg);
-  // console.log(mouseX,mouseY)
+  console.log(star1,const1);
 
   // if nothing is active, glow
   if(!star1&&!const1){
@@ -71,6 +75,7 @@ function draw() {
 
   image(stars[1],100,windowHeight-200);
   image(constellations[1],150,100);
+  image(stars[3],windowWidth/2-260,windowHeight-150);
 
   textBoxes();
 
@@ -102,10 +107,10 @@ function hoverGlow(){
 }
 
 function mouseClicked(){
-  console.log("const1: "+const1);
-  console.log("const1star1: "+const1star1);
-  console.log("const1star2: "+const1star2);
-  console.log("const1star3: "+const1star3);
+  // console.log("const1: "+const1);
+  // console.log("const1star1: "+const1star1);
+  // console.log("const1star2: "+const1star2);
+  // console.log("const1star3: "+const1star3);
   //if star 1 is active
   if(star1){
     star1 = false;
@@ -113,19 +118,22 @@ function mouseClicked(){
   // if constellation 1 is active
   else if(const1){
     //if a star in constellation is not active
-    if(!const1star1&&!const1star2&&!const1star3){
+    if(!const1star1&&!const1star2&&!const1star3&&!const1star4){
       //if mouse is on const 1 star 1
       if(mouseX>=windowWidth/2-400&&mouseX<=windowWidth/2-321&&mouseY>=windowHeight/2-100&&mouseY<=windowHeight/2-14){
         const1star1 = true;
       }
       //if mouse is on const 1 star 2
       else if(mouseX>=windowWidth/2-220&&mouseX<=windowWidth/2-141&&mouseY>=windowHeight/2-300&&mouseY<=windowHeight/2-214){
-        console.log("trueeee")
         const1star2 = true;
       }
       //if mouse is on const 1 star 3
       else if(mouseX>=windowWidth/2+80&&mouseX<=windowWidth/2+159&&mouseY>=windowHeight/2-200&&mouseY<=windowHeight/2-114){
         const1star3 = true;
+      }
+      //if mouse is on const 1 star 4
+      else if(mouseX>=windowWidth/2+240&&mouseX<=windowWidth/2+319&&mouseY>=windowHeight-300&&mouseY<=windowHeight-211){
+        const1star4 = true;
       }
       // else, close out of constellation 1
       else {
@@ -140,6 +148,9 @@ function mouseClicked(){
     }
     else if(const1star3){
       const1star3 = false;
+    }
+    else if(const1star4){
+      const1star4 = false;
     }
   } 
   else {
@@ -162,15 +173,15 @@ function textBoxes(){
     // fill(col1);
     // rect(windowWidth/2,windowHeight/2,400,250,20);
     fill('white')
-    image(const1stars[2],windowWidth/2-250,windowHeight/2-150);
-    text('seeing the bag charms on different strangers\nswing in sync while walking',windowWidth/2,windowHeight/2+180);
+    image(star1img,windowWidth/2-250,windowHeight/2-150);
+    text('seeing the bag charms on different strangers\nswing in sync while walking',windowWidth/2,windowHeight/2+170);
   }
   else if(const1){
     background(0,0,50,180)
     fill(col2);
     rect(windowWidth/2,windowHeight/2,400,150,20);
     fill('white')
-    text('people using a thing to do something else it\'s not meant to do',windowWidth/2,windowHeight/2-10);
+    text('people using a thing to do something else it\'s not originally meant to do',windowWidth/2,windowHeight/2-10);
     text('a.k.a stretching the limits of what something can do',windowWidth/2,windowHeight/2+10);
 
     image(stars[2],windowWidth/2-400,windowHeight/2-100);
@@ -183,25 +194,32 @@ function textBoxes(){
       background(0,0,50,180)
       fill('white')
       image(const1stars[1],windowWidth/2-150,windowHeight/2-150);
-      text('making a working calculator in a cutesy Pokemon sandbox game',windowWidth/2,windowHeight/2+170);
+      text('making a working calculator in a cutesy Pokemon game',windowWidth/2,windowHeight/2+170);
       image(stars[2],windowWidth/2-400,windowHeight/2-100);
   } 
 
   else if(const1star2){
     background(0,0,50,180)
     fill('white')
-    image(const1stars[1],windowWidth/2-150,windowHeight/2-150);
-    text('building 24-bit RAM in an open-world RPG factory game that solves math problems',windowWidth/2,windowHeight/2+170);
+    text('drawing visual art in a MIDI program using notes',windowWidth/2,windowHeight/2);
     image(stars[2],windowWidth/2-220,windowHeight/2-300);
   }
 
   else if(const1star3){
     background(0,0,50,180)
     fill('white')
-     image(stars[2],windowWidth/2+80,windowHeight/2-200);
-    text('building 24-bit RAM in an open-world RPG factory game that solves math problems',windowWidth/2,windowHeight/2+170);
-    image(stars[2],windowWidth/2-220,windowHeight/2-300);
+    image(stars[2],windowWidth/2+80,windowHeight/2-200);
+    text('making a giant keyboard in Minecraft using sheep and mine carts',windowWidth/2,windowHeight/2);
   }
 
-}
+  else if(const1star4){
+    background(0,0,50,180)
+    fill('white')
+    image(stars[2],windowWidth/2+240,windowHeight-300);
+    text('building 24-bit RAM in an open-world RPG game that solves addition',windowWidth/2,windowHeight/2);
+  }
 
+  // if(star2){
+
+  // }
+}
